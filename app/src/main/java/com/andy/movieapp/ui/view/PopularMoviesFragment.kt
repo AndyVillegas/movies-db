@@ -38,7 +38,7 @@ class PopularMoviesFragment : Fragment() {
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 if(!canScrollMore())
-                    viewModel.fetchMovies()
+                    viewModel.nextPage()
             }
 
         })

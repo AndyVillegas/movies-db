@@ -31,12 +31,15 @@ class PopularMoviesViewModel : ViewModel() {
             try {
                 val movies = fetchPopularMoviesUseCase(page)
                 _movies.postValue(movies)
-                page += 1
             }catch (ioe: IOException){
                 _message.postValue(MessageUI(MessageType.ERROR, "Error when try fetch movies"))
             }finally {
                 _isLoading.postValue(false)
             }
         }
+    }
+    fun nextPage(){
+        page += 1
+        fetchMovies()
     }
 }
