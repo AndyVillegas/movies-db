@@ -29,7 +29,7 @@ class PopularMoviesViewModel : ViewModel() {
         _isLoading.postValue(true)
         viewModelScope.launch {
             try {
-                val movies = fetchPopularMoviesUseCase()
+                val movies = fetchPopularMoviesUseCase(page)
                 _movies.postValue(movies)
                 page += 1
             }catch (ioe: IOException){

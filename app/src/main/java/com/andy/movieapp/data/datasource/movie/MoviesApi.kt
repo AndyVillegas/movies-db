@@ -5,5 +5,5 @@ import com.andy.movieapp.data.model.PaginatedList
 
 interface MoviesApi {
     suspend fun find(id: Long): Movie
-    suspend fun fetchPopularMovies(): PaginatedList<Movie>
+    suspend fun fetchPopularMovies(page: Int): PaginatedList<Movie>
 }

@@ -10,8 +10,8 @@ class FetchPopularMoviesUseCase(
     private val moviesRepository: MoviesRepository,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
 ) {
-    suspend operator fun invoke(): List<Movie> = withContext(defaultDispatcher){
-        val paginatedMovies = moviesRepository.fetchPopularMovies()
+    suspend operator fun invoke(page: Int = 1): List<Movie> = withContext(defaultDispatcher){
+        val paginatedMovies = moviesRepository.fetchPopularMovies(page)
         paginatedMovies.results
     }
 }

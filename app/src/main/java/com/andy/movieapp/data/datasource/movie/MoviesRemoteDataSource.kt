@@ -16,9 +16,9 @@ class MoviesRemoteDataSource(private val dispatcher: CoroutineDispatcher = Dispa
         }
     }
 
-    suspend fun fetchPopularMovies(): PaginatedList<Movie> {
+    suspend fun fetchPopularMovies(page: Int): PaginatedList<Movie> {
         return withContext(dispatcher){
-            moviesApi.fetchPopularMovies()
+            moviesApi.fetchPopularMovies(page)
         }
     }
 }

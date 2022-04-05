@@ -1,6 +1,7 @@
 package com.andy.movieapp.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +30,22 @@ class PopularMoviesFragment : Fragment() {
         popularMoviesPageAdapter = PopularMoviesPageAdapter(this)
         binding.pager.adapter = popularMoviesPageAdapter
         observeViewModel()
-        viewModel.fetchMovies()
+        binding.pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                if(!canScrollMore())
+                    viewModel.fetchMovies()
+            }
+
+        })
+    }
+
+    private fun canScrollMore(): Boolean {
+        return binding.pager.canScrollHorizontally(1)
     }
 
     private fun observeViewModel(){
@@ -39,6 +55,7 @@ class PopularMoviesFragment : Fragment() {
         viewModel.message.observe(viewLifecycleOwner){
             Toast.makeText(context,it.text,Toast.LENGTH_LONG).show()
         }
+        viewModel.fetchMovies()
     }
 
     companion object {
