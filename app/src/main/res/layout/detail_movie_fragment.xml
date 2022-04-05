@@ -12,102 +12,116 @@
 
     <ImageView
         android:id="@+id/movie_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="fitStart"
         tools:ignore="ContentDescription"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/title_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/movie_image"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/lorem[20]" />
+        style="@style/TextAppearance.Material3.TitleMedium"
+        tools:text="@tools:sample/lorem[4]" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier">
 
-        <ImageView
-            android:id="@+id/start_1_image"
+        <TextView
+            android:text="@string/vote_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
 
-        <ImageView
-            android:id="@+id/start_2_image"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/start_3_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_1_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_4_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_2_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_5_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_3_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_6_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_4_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_7_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_5_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_8_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_6_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_9_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_7_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/start_10_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_star_24"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/start_8_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/start_9_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/start_10_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -118,6 +132,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/title_text_view"
         app:layout_constraintTop_toBottomOf="@+id/title_text_view"
+        style="@style/TextAppearance.Material3.BodySmall"
         tools:text="@tools:sample/lorem[2]" />
 
     <TextView
@@ -143,6 +158,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:layout_editor_absoluteX="16dp"
+        style="@style/TextAppearance.Material3.BodyMedium"
         tools:text="@tools:sample/lorem[30]" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
