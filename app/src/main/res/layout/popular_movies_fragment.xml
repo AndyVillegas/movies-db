@@ -6,6 +6,10 @@
     android:background="@color/white"
     tools:context=".ui.view.PopularMoviesFragment">
 
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/loading_layout" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"

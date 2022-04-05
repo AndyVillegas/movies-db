@@ -55,6 +55,9 @@ class PopularMoviesFragment : Fragment() {
         viewModel.message.observe(viewLifecycleOwner){
             Toast.makeText(context,it.text,Toast.LENGTH_LONG).show()
         }
+        viewModel.isLoading.observe(viewLifecycleOwner){
+            binding.loadingLayout.loadingProgress.visibility = if(it) View.VISIBLE else View.GONE
+        }
         viewModel.fetchMovies()
     }
 
