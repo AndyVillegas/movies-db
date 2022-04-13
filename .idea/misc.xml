@@ -9,7 +9,9 @@
         <entry key="..\:/Users/Andy/AndroidStudioProjects/MovieApp/app/src/main/res/layout/fragment_popular_movie.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Andy/AndroidStudioProjects/MovieApp/app/src/main/res/layout/item_movie_fragment.xml" value="0.25" />
         <entry key="..\:/Users/Andy/AndroidStudioProjects/MovieApp/app/src/main/res/layout/loading_layout.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/Andy/AndroidStudioProjects/MovieApp/app/src/main/res/layout/popular_movie_item.xml" value="0.5" />
         <entry key="..\:/Users/Andy/AndroidStudioProjects/MovieApp/app/src/main/res/layout/popular_movies_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/Andy/AndroidStudioProjects/MovieApp/app/src/main/res/layout/popular_movies_list_fragment.xml" value="0.2677083333333333" />
       </map>
     </option>
   </component>

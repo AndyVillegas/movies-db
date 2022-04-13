@@ -14,10 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val popularMoviesFragment = PopularMoviesFragment.newInstance()
+        val fragment = PopularMoviesListFragment.newInstance()
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add(R.id.fragment_container_view, popularMoviesFragment)
+            add(R.id.fragment_container_view, fragment)
         }
     }
 }
