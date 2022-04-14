@@ -49,6 +49,11 @@ class PopularMoviesListRecyclerAdapter(private val context: Context):
         this.notifyItemRangeInserted(positionStart, this.dataset.size)
     }
 
+    fun resetList(){
+        this.notifyItemRangeRemoved(0, this.dataset.size)
+        this.dataset.clear()
+    }
+
     fun addOnItemSelectedListener(listener: OnItemSelectedListener){
         mListener = listener
     }
