@@ -65,7 +65,9 @@ class PopularMoviesListFragment : Fragment() {
             searchJob?.cancel()
             searchJob = lifecycleScope.launch {
                 delay(500)
-                viewModel.searchInMemory(binding.searchTextView.text.toString())
+                val search = binding.searchTextView.text.toString()
+                viewModel.isSearchTextEmpty = search.isBlank()
+                viewModel.searchInMemory(search)
             }
         }
     }
@@ -77,7 +79,7 @@ class PopularMoviesListFragment : Fragment() {
         binding.moviesRecyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if(!recyclerView.canScrollVertically(1) && !viewModel.isFiltered){
+                if(!recyclerView.canScrollVertically(1) && viewModel.isSearchTextEmpty){
                     viewModel.nextPage()
                 }
             }

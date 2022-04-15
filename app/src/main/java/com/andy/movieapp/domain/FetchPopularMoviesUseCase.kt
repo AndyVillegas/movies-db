@@ -11,9 +11,11 @@ import javax.inject.Inject
 class FetchPopularMoviesUseCase @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) {
-    private val moviesCached: HashMap<Int, PaginatedList<Movie>> = hashMapOf()
+    private val _moviesCached: HashMap<Int, PaginatedList<Movie>> = hashMapOf()
+    val moviesCached
+        get() = _moviesCached
     suspend operator fun invoke(page: Int = 1): List<Movie> = withContext(Dispatchers.Default){
-        val paginatedMovies = moviesCached.getOrPut(page) { moviesRepository.fetchPopularMovies(page) }
+        val paginatedMovies = _moviesCached.getOrPut(page) { moviesRepository.fetchPopularMovies(page) }
         paginatedMovies.results
     }
 }

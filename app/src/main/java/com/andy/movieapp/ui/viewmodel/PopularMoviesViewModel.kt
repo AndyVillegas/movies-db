@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.andy.movieapp.data.model.Movie
 import com.andy.movieapp.domain.FetchPopularMoviesUseCase
+import com.andy.movieapp.domain.SearchInCachedMoviesUseCase
 import com.andy.movieapp.shared.MessageType
 import com.andy.movieapp.shared.MessageUI
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,9 +15,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
-    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
+    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase,
+    private val searchInCachedMoviesUseCase: SearchInCachedMoviesUseCase,
 ) : BaseMessageViewModel() {
-    var isFiltered: Boolean = false
+    var isSearchTextEmpty: Boolean = false
     private val _filteredMovies: MutableLiveData<List<Movie>> = MutableLiveData()
     val filteredMovies: LiveData<List<Movie>>
         get() = _filteredMovies
@@ -27,14 +29,12 @@ class PopularMoviesViewModel @Inject constructor(
     val isLoading: LiveData<Boolean>
         get() = _isLoading
     private var page: Int = 1
-    private val _cachedMovies: HashMap<Int, List<Movie>> = HashMap()
     fun fetchMovies() {
         _isLoading.postValue(true)
         viewModelScope.launch {
             try {
                 val movies = fetchPopularMoviesUseCase(page)
                 _movies.postValue(movies)
-                if (!_cachedMovies.containsKey(page)) _cachedMovies[page] = movies
             } catch (ioe: IOException) {
                 _message.postValue(MessageUI(MessageType.ERROR, "Error when try fetch movies"))
             } finally {
@@ -49,14 +49,11 @@ class PopularMoviesViewModel @Inject constructor(
     }
 
     fun searchInMemory(search: String) {
-        isFiltered = search.isNotBlank()
-        val movies = _cachedMovies.flatMap { it.value }
-        if (isFiltered)
-            _filteredMovies.postValue(
-                movies.filter { movie ->
-                    movie.title.uppercase().contains(search.uppercase())
-                })
-        else
-            _filteredMovies.postValue(movies)
+        _filteredMovies.postValue(
+            searchInCachedMoviesUseCase(
+                fetchPopularMoviesUseCase.moviesCached,
+                search
+            )
+        )
     }
 }
