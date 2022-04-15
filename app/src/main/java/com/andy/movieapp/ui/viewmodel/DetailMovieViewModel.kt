@@ -5,16 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andy.movieapp.data.model.Movie
-import com.andy.movieapp.data.repository.MoviesRepository
 import com.andy.movieapp.domain.GetMovieUseCase
 import com.andy.movieapp.shared.MessageType
 import com.andy.movieapp.shared.MessageUI
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class DetailMovieViewModel: ViewModel(){
-    private val moviesRepository: MoviesRepository = MoviesRepository()
-    private val getMovieUseCase = GetMovieUseCase(moviesRepository)
+@HiltViewModel
+class DetailMovieViewModel @Inject constructor(
+    private val getMovieUseCase: GetMovieUseCase
+) : ViewModel(){
     private var _currentMovie: MutableLiveData<Movie> = MutableLiveData()
     val currentMovie: LiveData<Movie>
         get() = _currentMovie

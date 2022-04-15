@@ -12,8 +12,11 @@ import com.andy.movieapp.R
 import com.andy.movieapp.databinding.DetailMovieFragmentBinding
 import com.andy.movieapp.facades.imageLoader.ImageLoaderFacade
 import com.andy.movieapp.ui.viewmodel.DetailMovieViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val MOVIE_ID = "movieId"
+
+@AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
 
     private val viewModel: DetailMovieViewModel by viewModels()

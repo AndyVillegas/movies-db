@@ -5,16 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andy.movieapp.data.model.Movie
-import com.andy.movieapp.data.repository.MoviesRepository
 import com.andy.movieapp.domain.FetchPopularMoviesUseCase
 import com.andy.movieapp.shared.MessageType
 import com.andy.movieapp.shared.MessageUI
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class PopularMoviesViewModel : ViewModel() {
-    private val moviesRepository: MoviesRepository = MoviesRepository()
-    private val fetchPopularMoviesUseCase = FetchPopularMoviesUseCase(moviesRepository)
+@HiltViewModel
+class PopularMoviesViewModel @Inject constructor(
+    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
+) : ViewModel() {
     var isFiltered: Boolean = false
     private val _filteredMovies: MutableLiveData<List<Movie>> = MutableLiveData()
     val filteredMovies: LiveData<List<Movie>>
@@ -30,31 +32,33 @@ class PopularMoviesViewModel : ViewModel() {
         get() = _isLoading
     private var page: Int = 1
     private val _cachedMovies: HashMap<Int, List<Movie>> = HashMap()
-    fun fetchMovies(){
+    fun fetchMovies() {
         _isLoading.postValue(true)
         viewModelScope.launch {
             try {
                 val movies = fetchPopularMoviesUseCase(page)
                 _movies.postValue(movies)
-                if(!_cachedMovies.containsKey(page)) _cachedMovies[page] = movies
-            }catch (ioe: IOException){
+                if (!_cachedMovies.containsKey(page)) _cachedMovies[page] = movies
+            } catch (ioe: IOException) {
                 _message.postValue(MessageUI(MessageType.ERROR, "Error when try fetch movies"))
-            }finally {
+            } finally {
                 _isLoading.postValue(false)
             }
         }
     }
-    fun nextPage(){
+
+    fun nextPage() {
         page += 1
         fetchMovies()
     }
-    fun searchInMemory(search: String){
+
+    fun searchInMemory(search: String) {
         isFiltered = search.isNotBlank()
         val movies = _cachedMovies.flatMap { it.value }
-        if(isFiltered)
+        if (isFiltered)
             _filteredMovies.postValue(
-                movies.filter {
-                    movie -> movie.title.uppercase().contains(search.uppercase())
+                movies.filter { movie ->
+                    movie.title.uppercase().contains(search.uppercase())
                 })
         else
             _filteredMovies.postValue(movies)

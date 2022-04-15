@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andy.movieapp.R
 import com.andy.movieapp.databinding.PopularMoviesListFragmentBinding
 import com.andy.movieapp.ui.viewmodel.PopularMoviesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PopularMoviesListFragment : Fragment() {
     private var searchJob: Job? = null
     private lateinit var popularMoviesListRecyclerAdapter: PopularMoviesListRecyclerAdapter
